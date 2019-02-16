@@ -37,13 +37,15 @@ class Calculator extends React.Component {
         const input = event.target.value;
 
         if (input === 'clear') {
-            newExpression = '0'
+            newExpression = '0';
         } else if (expression === '0' && !this.isOperation(input)) {
             newExpression = input;
         } else if (this.isComplete(expression) && input === '=') {
             newExpression = math.eval(expression).toString();
         } else if (!this.isComplete(expression) && this.isOperation(input)){
             newExpression = expression;
+        } else if (expression === 'Infinity') {
+            newExpression = '0';
         } else {
             newExpression = expression + input;
         }
